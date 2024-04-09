@@ -5,6 +5,10 @@ import {
   Label,
   Text,
   TextInput,
+  Radio,
+  RadioGroup,
+  Switch,
+  Slider,
 } from "@fabric-msft/fluent-react";
 import FormField from "../components/FormField";
 import { DatePicker } from "@fluentui/react-datepicker-compat";
@@ -232,7 +236,97 @@ const Identity: React.FC = () => {
 };
 
 const Training: React.FC = () => {
-  return <div>Training</div>;
+  const dropdownId = useId("dropdown-training");
+  const options = [
+    "Positive Reinforcement",
+    "Negative Reinforcement",
+    "No Training",
+  ];
+  const performanceDropdownId = useId("dropdown-performance");
+  const performanceOptions = ["Comedic", "Quick"];
+  return (
+    <div>
+      <Text block size="400" weight="bold">
+        <h3>Training Preferences</h3>
+      </Text>
+      <FormField
+        id="training-methodology"
+        label="Training Methodology"
+        warningText="This is a warning"
+        errorText="This is an error"
+      >
+        <Dropdown
+          aria-labelledby={dropdownId}
+          placeholder="Select a training strategy"
+        >
+          {options.map((option) => (
+            <Option key={option} disabled={option === "Ferret"}>
+              {option}
+            </Option>
+          ))}
+        </Dropdown>
+      </FormField>
+
+      <FormField
+        id="reward-type"
+        label="Reward Type"
+        warningText="This is a warning"
+        errorText="This is an error"
+        tooltip="Select the type of reward you want to give your pet"
+      >
+        <RadioGroup orientation="vertical">
+          <Radio value="treats">Treats</Radio>
+          <Radio value="toy">Toy</Radio>
+          <Radio value="verbal">Verbal</Radio>
+        </RadioGroup>
+      </FormField>
+      <FormField
+        id="quick-training"
+        label="Quick Training"
+        warningText="This is a warning"
+        errorText="This is an error"
+      >
+        <Switch>On</Switch>
+      </FormField>
+      <Text block size="400" weight="semibold">
+        <h3>Tricks</h3>
+      </Text>
+      <FormField
+        id="trick-speed"
+        label="Trick Speed"
+        warningText="This is a warning"
+        errorText="This is an error"
+      >
+        <Slider max="100"></Slider>
+      </FormField>
+
+      <FormField
+        id="eagerness-to-please"
+        label="Eagerness to Please"
+        warningText="This is a warning"
+        errorText="This is an error"
+      >
+        <Slider max="100"></Slider>
+      </FormField>
+      <FormField
+        id="performance-energy"
+        label="Performance Energy"
+        warningText="This is a warning"
+        errorText="This is an error"
+      >
+        <Dropdown
+          aria-labelledby={performanceDropdownId}
+          placeholder="Select a performance strategy"
+        >
+          {performanceOptions.map((option) => (
+            <Option key={option} disabled={option === "Ferret"}>
+              {option}
+            </Option>
+          ))}
+        </Dropdown>
+      </FormField>
+    </div>
+  );
 };
 
 const Pedigree: React.FC = () => {
