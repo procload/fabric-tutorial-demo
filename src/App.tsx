@@ -1,25 +1,97 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+
+import "./App.css";
+
+import {
+  setTheme,
+  fabricLightTheme,
+  fabricDarkTheme,
+} from "@fabric-msft/theme";
+
+import { Switch } from "@fabric-msft/fluent-react";
+
+import {
+  AnimalDog20Filled,
+  OrganizationHorizontal20Regular,
+  StethoscopeRegular,
+  Home20Regular,
+  TreeEvergreen20Regular,
+  HatGraduation20Regular,
+} from "@fluentui/react-icons";
+
+const navItems = [
+  {
+    heading: "General",
+    items: [
+      { text: "Identity", isActive: true, icon: AnimalDog20Filled },
+      { text: "Pedigree", icon: OrganizationHorizontal20Regular },
+      { text: "Health", icon: StethoscopeRegular },
+    ],
+  },
+  {
+    heading: "Behaviors",
+    items: [
+      { text: "Household", icon: Home20Regular },
+      { text: "Outdoors", icon: TreeEvergreen20Regular },
+      { text: "Training", icon: HatGraduation20Regular },
+    ],
+  },
+  {
+    heading: "Personality",
+    items: [
+      { text: "Personality Type", icon: Home20Regular },
+      { text: "Emotions", icon: TreeEvergreen20Regular },
+      { text: "Habit", icon: HatGraduation20Regular },
+    ],
+  },
+  {
+    heading: "Appearance",
+    items: [
+      { text: "Behaviors", icon: AnimalDog20Filled },
+      { text: "Pedigree", icon: OrganizationHorizontal20Regular },
+      { text: "Health", icon: StethoscopeRegular },
+    ],
+  },
+  {
+    heading: "Vocalization",
+    items: [
+      { text: "Household", icon: Home20Regular },
+      { text: "Outdoors", icon: TreeEvergreen20Regular },
+      { text: "Training", icon: HatGraduation20Regular },
+    ],
+  },
+];
 
 function App() {
+  const [isDarkMode, setIsDarkMode] = useState(false);
+  const toggleTheme = () => {
+    setIsDarkMode(!isDarkMode); // Toggle the theme state
+
+    if (!isDarkMode) {
+      document.body.classList.add("dark-mode-active");
+      setTheme(fabricDarkTheme); // Apply the dark theme
+    } else {
+      document.body.classList.remove("dark-mode-active");
+      setTheme(fabricLightTheme); // Apply the light theme
+    }
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <div className="container">
+        <div className="sidebar"></div>
+        <div className="content"></div>
+      </div>
+      <Switch
+        className="dark-mode-switch"
+        content="Dark Mode"
+        labelPosition="after"
+        name="dark-mode-option"
+        checked={isDarkMode}
+        onChange={toggleTheme} // Toggle theme on change
+      >
+        Dark mode
+      </Switch>
+    </>
   );
 }
 
