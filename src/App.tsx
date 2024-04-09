@@ -8,7 +8,7 @@ import {
   fabricDarkTheme,
 } from "@fabric-msft/theme";
 
-import { Switch } from "@fabric-msft/fluent-react";
+import { Switch, Tabs, Tab, TabPanel } from "@fabric-msft/fluent-react";
 
 import {
   AnimalDog20Filled,
@@ -91,7 +91,19 @@ function App() {
             currentPage={currentPage}
           />
         </div>
-        <div className="content"></div>
+        <div className="content">
+          <Tabs>
+            <Tab role="tab" id="firstTab">
+              Basic
+            </Tab>
+            <Tab role="tab" id="secondTab">
+              Advanced
+            </Tab>
+
+            <TabPanel id="firstTabPanel">Basic</TabPanel>
+            <TabPanel id="secondTabPanel">Advanced</TabPanel>
+          </Tabs>
+        </div>
       </div>
       <Switch
         className="dark-mode-switch"
