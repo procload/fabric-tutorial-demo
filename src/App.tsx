@@ -6,7 +6,15 @@ import {
   setTheme,
   fabricLightTheme,
   fabricDarkTheme,
+  Theme,
 } from "@fabric-msft/theme";
+
+import {
+  webLightTheme,
+  teamsLightTheme,
+  webDarkTheme,
+  teamsDarkTheme,
+} from "@fluentui/react-components";
 
 import { Switch, Tabs, Tab, TabPanel } from "@fabric-msft/fluent-react";
 
@@ -26,6 +34,9 @@ import {
   Personality,
   Default,
 } from "./pages/Pages";
+
+import { Select, Option } from "@fluentui/react-components";
+import FormField from "./components/FormField";
 
 setTheme(fabricLightTheme);
 
@@ -81,19 +92,29 @@ function App() {
     Default: <Default />,
   };
 
-  const [isDarkMode, setIsDarkMode] = useState(false);
-  const [currentPage, setCurrentPage] = useState("Identity");
+  const [currentTheme, setCurrentTheme] = useState("Fabric");
+
+  const themes: { [key: string]: Theme[] } = {
+    Fabric: [fabricLightTheme, fabricDarkTheme],
+    Web: [webLightTheme, webDarkTheme],
+    Teams: [teamsLightTheme, teamsDarkTheme],
+  };
+
+  const changeTheme = (
+    event: React.ChangeEvent<HTMLSelectElement>,
+    data: { value: string }
+  ) => {
+    setCurrentTheme(data.value);
+    setTheme(themes[data.value as keyof typeof themes][isDarkMode ? 1 : 0]);
+  };
+
   const toggleTheme = () => {
     setIsDarkMode(!isDarkMode);
-
-    if (!isDarkMode) {
-      document.body.classList.add("dark-mode-active");
-      setTheme(fabricDarkTheme);
-    } else {
-      document.body.classList.remove("dark-mode-active");
-      setTheme(fabricLightTheme);
-    }
+    setTheme(themes[currentTheme as keyof typeof themes][!isDarkMode ? 1 : 0]);
   };
+
+  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [currentPage, setCurrentPage] = useState("Identity");
   return (
     <>
       <div className="container">
@@ -136,6 +157,17 @@ function App() {
       >
         Dark mode
       </Switch>
+
+      <FormField label="Select a theme" id="theme-select">
+        <Select
+          defaultValue={currentTheme as string} // Use defaultValue prop
+          onChange={changeTheme}
+        >
+          {Object.keys(themes).map((theme) => (
+            <option key={theme}>{theme}</option>
+          ))}
+        </Select>
+      </FormField>
     </>
   );
 }

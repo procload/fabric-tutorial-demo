@@ -158,10 +158,16 @@ fluent-accordion-item .nav-item a {
   width: 820px;
 }
 
-.dark-mode-switch {
+.dark-mode-switch,
+#theme-select {
   position: absolute;
   left: 20px;
   bottom: 20px;
+}
+
+#theme-select {
+  bottom: 100px;
+  width: 200px;
 }
 
 .top-nav {
