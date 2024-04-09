@@ -19,6 +19,8 @@ import {
   HatGraduation20Regular,
 } from "@fluentui/react-icons";
 
+setTheme(fabricLightTheme);
+
 const navItems = [
   {
     heading: "General",
@@ -66,14 +68,14 @@ function App() {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [currentPage, setCurrentPage] = useState("Identity");
   const toggleTheme = () => {
-    setIsDarkMode(!isDarkMode); // Toggle the theme state
+    setIsDarkMode(!isDarkMode);
 
     if (!isDarkMode) {
       document.body.classList.add("dark-mode-active");
-      setTheme(fabricDarkTheme); // Apply the dark theme
+      setTheme(fabricDarkTheme);
     } else {
       document.body.classList.remove("dark-mode-active");
-      setTheme(fabricLightTheme); // Apply the light theme
+      setTheme(fabricLightTheme);
     }
   };
   return (
