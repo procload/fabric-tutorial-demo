@@ -1,7 +1,3 @@
-* {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-}
-
 @font-face {
   font-family: Segoe UI;
   src: local("Segoe UI"),
@@ -41,29 +37,129 @@
   font-display: swap;
 }
 
+* {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
 html,
 body,
 #root,
-.container {
-  height: 100%;
-  color: var(--colorNeutralForeground2);
-}
-
-a {
-  color: var(--colorBrandBackground);
-  text-decoration: none;
-}
-
+.container,
 .sidebar {
   height: 100%;
 }
 
 body {
   background: var(--colorNeutralBackground1);
+  color: var(--colorNeutralForeground2);
+}
+
+h3 {
+  margin: var(--spacingVerticalL) 0;
+}
+
+.container {
+  max-width: 1200px;
+  display: flex;
+}
+
+a,
+.nav-item a,
+.external {
+  color: var(--colorBrandBackground);
+  text-decoration: none;
+  font-size: var(--fontSizeBase300);
+}
+
+.sidebar {
+  width: 280px;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow-y: auto;
+  height: 100%;
+}
+
+.side-nav {
+  max-width: 280px;
+  background: var(--colorNeutralBackground2);
+  padding: var(--spacingVerticalXL) var(--spacingHorizontalXXXL);
+  position: relative;
+  height: 100%;
+}
+
+.side-nav h3 {
+  line-height: var(--lineHeightBase600);
+  margin-left: var(--spacingHorizontalSNudge);
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding-left: var(--spacingHorizontalSNudge);
+  margin: var(--spacingVerticalL) 0;
+  color: var(--colorNeutralForeground2);
+}
+
+.nav-item:first-of-type {
+  margin-top: var(--spacingVerticalXS);
+}
+
+.nav-item:last-of-type {
+  margin-bottom: var(--spacingVerticalS);
+}
+
+.nav-item svg {
+  padding-right: var(--spacingHorizontalS);
+}
+
+.nav-item.home {
+  margin-left: var(--spacingHorizontalSNudge);
+}
+
+.nav-item.home a {
+  font-size: var(--fontSizeBase400);
+}
+
+.nav-item.active::before,
+.nav-item:hover::before {
+  content: "";
+  position: absolute;
+  left: -8px;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: var(--colorBrandBackground);
+  border-radius: 3px 0 0 3px;
+}
+
+fluent-accordion-item,
+fluent-accordion-item .nav-item a {
+  color: var(--colorNeutralForeground2);
+}
+
+.icon-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 32px;
+  margin-right: var(--spacingHorizontalXXS);
+}
+
+.content {
+  padding: var(--spacingVerticalXL) var(--spacingHorizontalXXXL);
+  width: 820px;
 }
 
 .dark-mode-switch {
   position: absolute;
   left: 20px;
   bottom: 20px;
+}
+
+.top-nav {
+  font-size: var(--fontSizeBase300);
+  font-weight: var(--fontWeightMedium);
+  color: var(--colorNeutralForeground3);
 }

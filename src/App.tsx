@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import SideNav from "./components/Sidenav";
 import "./App.css";
 
 import {
@@ -64,6 +64,7 @@ const navItems = [
 
 function App() {
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const [currentPage, setCurrentPage] = useState("Identity");
   const toggleTheme = () => {
     setIsDarkMode(!isDarkMode); // Toggle the theme state
 
@@ -78,7 +79,16 @@ function App() {
   return (
     <>
       <div className="container">
-        <div className="sidebar"></div>
+        <div className="sidebar">
+          <SideNav
+            navItems={navItems.map((item, index) => ({
+              ...item,
+              id: `navItem-${index}`,
+            }))}
+            onNavItemSelect={setCurrentPage}
+            currentPage={currentPage}
+          />
+        </div>
         <div className="content"></div>
       </div>
       <Switch
