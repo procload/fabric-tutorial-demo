@@ -68,6 +68,10 @@ a {
   text-decoration: none;
 }
 
+fabric-teaching-bubble {
+  z-index: 1000;
+}
+
 .nav-item a,
 .external {
   font-size: var(--fontSizeBase300);
@@ -205,4 +209,28 @@ fluent-accordion-item .nav-item a {
 .empty-state fluent-button {
   width: auto;
   margin: var(--spacingVerticalL) auto;
+}
+
+.personality-card {
+  margin-bottom: var(--spacingVerticalXL);
+  width: 250px;
+}
+
+.personality-card .fui-CardHeader {
+  display: block;
+}
+
+.personality-card .fui-CardHeader__header {
+  display: block;
+}
+
+.personality-card .fui-CardHeader__header > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.personality-card .fui-CardHeader__header > div img {
+  width: 24px;
+  height: 24px;
 }

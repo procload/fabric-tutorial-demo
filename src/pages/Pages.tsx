@@ -1,4 +1,5 @@
 import React from "react";
+import { useState } from "react";
 import {
   Button,
   Checkbox,
@@ -10,10 +11,22 @@ import {
   Switch,
   Slider,
 } from "@fabric-msft/fluent-react";
+import { TeachingBubble } from "@fabric-msft/fabric-react";
 import FormField from "../components/FormField";
 import { DatePicker } from "@fluentui/react-datepicker-compat";
 
-import { Dropdown, Option, useId } from "@fluentui/react-components";
+import {
+  Card,
+  CardHeader,
+  Dropdown,
+  Option,
+  useId,
+} from "@fluentui/react-components";
+
+import couchPotatoImage from "../face.png";
+import adventurerImage from "../mountain.png";
+import socialImage from "../butterfly.png";
+import loneWolfImage from "../dog.png";
 
 const Identity: React.FC = () => {
   const dropdownId = useId("dropdown-default");
@@ -553,7 +566,141 @@ const Pedigree: React.FC = () => {
 };
 
 const Personality: React.FC = () => {
-  return <div>Personality</div>;
+  const [isOpen, setIsOpen] = useState(true);
+
+  const toggleBubble = () => {
+    setIsOpen(!isOpen);
+  };
+  return (
+    <div>
+      <TeachingBubble open={isOpen} size="medium" target="#personality-heading">
+        <Button
+          slot="close"
+          aria-label="close button"
+          icon-only
+          appearance="transparent"
+          size="small"
+          className="toolbar-button close-btn"
+          onClick={toggleBubble}
+        >
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M18 6L6 18"
+              stroke="white"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M6 6L18 18"
+              stroke="white"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </Button>
+        <div slot="heading" role="heading">
+          <Text size="400" weight="semibold" block>
+            <span>Choose your dog’s personality type</span>
+          </Text>
+        </div>
+        <div id="teaching-bubble-content">
+          <div>
+            <span>
+              We’ll automatically configure the right settings for your dog’s
+              personality based on the archetype.
+            </span>
+          </div>
+        </div>
+        <div className="teaching-footer" slot="footer">
+          <Button onClick={toggleBubble}>Got it</Button>
+        </div>
+      </TeachingBubble>
+
+      <Text block size="400" weight="bold">
+        <h3 id="personality-heading">Personality Type</h3>
+      </Text>
+      <Card className="personality-card">
+        <CardHeader
+          header={
+            <div>
+              <Text weight="semibold">
+                <span>Couch Potato</span>
+              </Text>
+              <img src={couchPotatoImage} alt="Couch Potato" />
+            </div>
+          }
+        />
+        <Text size="200">
+          <p>
+            With a love for lounging and snoozing, this dog is a professional at
+            relaxation. They're content to spend their days on the couch.
+          </p>
+        </Text>
+      </Card>
+      <Card className="personality-card">
+        <CardHeader
+          header={
+            <div>
+              <Text weight="semibold">
+                <span>Adventurer</span>
+              </Text>
+              <img src={adventurerImage} alt="Adventurer" />
+            </div>
+          }
+        />
+        <Text size="200">
+          <p>
+            Born to explore, this dog is always up for an adventure. They're
+            happiest when hiking trails to exploring new places.
+          </p>
+        </Text>
+      </Card>
+      <Card className="personality-card">
+        <CardHeader
+          header={
+            <div>
+              <Text weight="semibold">
+                <span>Social Butterfly</span>
+              </Text>
+              <img src={socialImage} alt="Social Butterfly" />
+            </div>
+          }
+        />
+        <Text size="200">
+          <p>
+            This pup is the life of every gathering. Their wagging tail and
+            friendly demeanor make them the ultimate social butterfly.
+          </p>
+        </Text>
+      </Card>
+      <Card className="personality-card">
+        <CardHeader
+          header={
+            <div>
+              <Text weight="semibold">
+                <span>Lone Wolf</span>
+              </Text>
+              <img src={loneWolfImage} alt="Lone Wolf" />
+            </div>
+          }
+        />
+        <Text size="200">
+          <p>
+            With a touch of aloofness and a streak of independence, they're not
+            one to follow the crowd and prefer to do things their own way.
+          </p>
+        </Text>
+      </Card>
+    </div>
+  );
 };
 
 const Default: React.FC = () => {
