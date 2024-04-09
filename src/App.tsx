@@ -19,6 +19,14 @@ import {
   HatGraduation20Regular,
 } from "@fluentui/react-icons";
 
+import {
+  Identity,
+  Training,
+  Pedigree,
+  Personality,
+  Default,
+} from "./pages/Pages";
+
 setTheme(fabricLightTheme);
 
 const navItems = [
@@ -65,6 +73,14 @@ const navItems = [
 ];
 
 function App() {
+  const pageMapping = {
+    Identity: <Identity />,
+    Pedigree: <Pedigree />,
+    Training: <Training />,
+    "Personality Type": <Personality />,
+    Default: <Default />,
+  };
+
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [currentPage, setCurrentPage] = useState("Identity");
   const toggleTheme = () => {
@@ -100,7 +116,12 @@ function App() {
               Advanced
             </Tab>
 
-            <TabPanel id="firstTabPanel">Basic</TabPanel>
+            <TabPanel id="firstTabPanel">
+              {" "}
+              {pageMapping[currentPage as keyof typeof pageMapping] || (
+                <Default />
+              )}
+            </TabPanel>
             <TabPanel id="secondTabPanel">Advanced</TabPanel>
           </Tabs>
         </div>
