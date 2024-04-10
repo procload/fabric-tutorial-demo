@@ -35,7 +35,7 @@ import {
   Default,
 } from "./pages/Pages";
 
-import { Select, Option } from "@fluentui/react-components";
+import { Select } from "@fluentui/react-components";
 import FormField from "./components/FormField";
 
 setTheme(fabricLightTheme);
