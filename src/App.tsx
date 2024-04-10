@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 import SideNav from "./components/Sidenav";
 import "./App.css";
 
@@ -84,14 +84,6 @@ const navItems = [
 ];
 
 function App() {
-  const pageMapping = {
-    Identity: <Identity />,
-    Pedigree: <Pedigree />,
-    Training: <Training />,
-    "Personality Type": <Personality />,
-    Default: <Default />,
-  };
-
   const [currentTheme, setCurrentTheme] = useState("Fabric");
 
   const themes: { [key: string]: Theme[] } = {
@@ -115,6 +107,22 @@ function App() {
 
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [currentPage, setCurrentPage] = useState("Identity");
+
+  const pageMapping = {
+    Identity: <Identity isDarkMode={isDarkMode} />,
+    Pedigree: <Pedigree isDarkMode={isDarkMode} />,
+    Training: <Training isDarkMode={isDarkMode} />,
+    "Personality Type": <Personality isDarkMode={isDarkMode} />,
+    Default: <Default isDarkMode={isDarkMode} />,
+  };
+
+  useEffect(() => {
+    if (isDarkMode) {
+      document.body.classList.add("dark-mode-active");
+    } else {
+      document.body.classList.remove("dark-mode-active");
+    }
+  }, [isDarkMode]);
   return (
     <>
       <div className="container">
@@ -140,7 +148,7 @@ function App() {
             <TabPanel id="firstTabPanel">
               {" "}
               {pageMapping[currentPage as keyof typeof pageMapping] || (
-                <Default />
+                <Default isDarkMode={isDarkMode} />
               )}
             </TabPanel>
             <TabPanel id="secondTabPanel">Advanced</TabPanel>

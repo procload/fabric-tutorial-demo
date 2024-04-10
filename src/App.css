@@ -70,6 +70,15 @@ a {
 
 fabric-teaching-bubble {
   z-index: 1000;
+  color: var(--colorNeutralBackground2);
+}
+
+body.dark-mode-active fabric-teaching-bubble {
+  color: var(--colorNeutralForeground2);
+}
+
+.toolbar-button.close-btn {
+  z-index: 1000;
 }
 
 .nav-item a,
@@ -193,7 +202,6 @@ fluent-accordion-item .nav-item a {
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow: hidden;
   width: 64px;
   height: 64px;
   margin-right: var(--spacingHorizontalL);

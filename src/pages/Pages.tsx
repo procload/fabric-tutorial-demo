@@ -34,7 +34,11 @@ import teaching_light from "../teaching_light.svg";
 import imageplaceholder_dark from "../imageplaceholder_dark.svg";
 import imageplaceholder_light from "../imageplaceholder_light.svg";
 
-const Identity: React.FC = () => {
+interface PageProps {
+  isDarkMode: boolean;
+}
+
+const Identity: React.FC<PageProps> = ({ isDarkMode }) => {
   const dropdownId = useId("dropdown-default");
   const options = [
     "Cat",
@@ -57,7 +61,11 @@ const Identity: React.FC = () => {
         </Label>
         <div className="upload-container">
           <div className="icon-container">
-            <img src={imageplaceholder_light} alt="Teaching" />
+            {isDarkMode ? (
+              <img src={imageplaceholder_dark} alt="Placeholder Dark" />
+            ) : (
+              <img src={imageplaceholder_light} alt="Placeholder Light" />
+            )}
           </div>
           <div className="upload-button">
             <Button appearance="secondary">Upload a Photo</Button>
@@ -121,7 +129,7 @@ const Identity: React.FC = () => {
   );
 };
 
-const Training: React.FC = () => {
+const Training: React.FC<PageProps> = ({ isDarkMode }) => {
   const dropdownId = useId("dropdown-training");
   const options = [
     "Positive Reinforcement",
@@ -215,7 +223,7 @@ const Training: React.FC = () => {
   );
 };
 
-const Pedigree: React.FC = () => {
+const Pedigree: React.FC<PageProps> = ({ isDarkMode }) => {
   return (
     <div>
       <div className="empty-state">
@@ -438,8 +446,8 @@ const Pedigree: React.FC = () => {
   );
 };
 
-const Personality: React.FC = () => {
-  const [isOpen, setIsOpen] = useState(true);
+const Personality: React.FC<PageProps> = ({ isDarkMode }) => {
+  const [isOpen, setIsOpen] = useState(false);
 
   const toggleBubble = () => {
     setIsOpen(!isOpen);
@@ -484,6 +492,12 @@ const Personality: React.FC = () => {
             <span>Choose your dog’s personality type</span>
           </Text>
         </div>
+        {isDarkMode ? (
+          <img slot="image" src={teaching_dark} alt="Teaching Dark" />
+        ) : (
+          <img slot="image" src={teaching_light} alt="Teaching Light" />
+        )}
+
         <div id="teaching-bubble-content">
           <div>
             <span>
@@ -576,7 +590,7 @@ const Personality: React.FC = () => {
   );
 };
 
-const Default: React.FC = () => {
+const Default: React.FC<PageProps> = ({ isDarkMode }) => {
   return (
     <div>
       <Text>Default</Text>
